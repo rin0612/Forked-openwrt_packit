@@ -2,7 +2,7 @@
 #=====================================================================================
 # Description: Automatically Packaged OpenWrt
 # Function: Use Flippy's kernrl files and script to Packaged openwrt
-# Copyright (C) 2021 https://github.com/unifreq/openwrt_packit
+# Copyright (C) 2021 https://github.com/rin0612/openwrt_packit
 # Copyright (C) 2021 https://github.com/ophub/flippy-openwrt-actions
 #=====================================================================================
 
@@ -23,8 +23,8 @@ MAKE_PATH=${PWD}
 PACKAGE_FILE="openwrt-armvirt-64-default-rootfs.tar.gz"
 PACKAGE_OPENWRT=("vplus" "beikeyun" "l1pro" "s905" "s905d" "s905x2" "s905x3" "s912" "s922x" "s922x-n2" "diy")
 SELECT_ARMBIANKERNEL=("5.15.25" "5.4.180")
-SCRIPT_REPO_URL_VALUE="https://github.com/unifreq/openwrt_packit"
-SCRIPT_REPO_BRANCH_VALUE="master"
+SCRIPT_REPO_URL_VALUE="https://github.com/rin0612/openwrt_packit"
+SCRIPT_REPO_BRANCH_VALUE="backup.2022.04.25"
 KERNEL_REPO_URL_VALUE="https://github.com/breakings/OpenWrt/tree/main/opt/kernel"
 # KERNEL_REPO_URL_VALUE URL supported format:
 # KERNEL_REPO_URL_VALUE="https://github.com/breakings/OpenWrt/trunk/opt/kernel"
