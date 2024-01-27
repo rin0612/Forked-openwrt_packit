@@ -122,7 +122,7 @@ git clone --depth 1 ${SCRIPT_REPO_URL} -b ${SCRIPT_REPO_BRANCH} ${SELECT_PACKITP
 sync
 
 # KERNEL_REPO 的下载方式已经不支持转svn的方式了  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
-mkdir /opt/${SELECT_PACKITPATH}/kernel
+mkdir /opt/kernel
 wget -O /opt/kernel/boot-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
 wget -O /opt/kernel/dtb-amlogic-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
 # 非必须：header-.tar.gz
