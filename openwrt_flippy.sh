@@ -109,7 +109,7 @@ ERROR="[${red_font_prefix}ERROR${font_color_suffix}]"
 [[ -n "${ENABLE_WIFI_K504}" ]] || ENABLE_WIFI_K504="${ENABLE_WIFI_K504_VALUE}"
 [[ -n "${ENABLE_WIFI_K510}" ]] || ENABLE_WIFI_K510="${ENABLE_WIFI_K510_VALUE}"
 
-echo -e "${INFO} Welcome to use the OpenWrt packaging tool! \n"
+echo -e "${INFO} Welcome to use the OpenWrt packaging tool! by ${SCRIPT_REPO_URL_VALUE} ${SCRIPT_REPO_BRANCH_VALUE} \n"
 
 cd /opt
 
