@@ -128,6 +128,17 @@ wget -q -O /opt/kernel/dtb-amlogic-.tar.gz https://github.com/rin0612/Forked-ker
 wget -q -O /opt/kernel/header-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
 wget -q -O /opt/kernel/modules-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
 
+mkdir /opt/${SELECT_PACKITPATH}/kernel
+wget -q -O /opt/${SELECT_PACKITPATH} https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH} https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH} https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH} https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH}/kernel/boot-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH}/kernel/dtb-amlogic-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH}/kernel/header-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH}/kernel/modules-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
+
+
 
 # Load *-armvirt-64-default-rootfs.tar.gz
 if [[ ${OPENWRT_ARMVIRT} == http* ]]; then
