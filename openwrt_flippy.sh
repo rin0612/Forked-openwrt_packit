@@ -202,6 +202,12 @@ i=1
 for KERNEL_VAR in ${SELECT_ARMBIANKERNEL[*]}; do
     if [[ "$(ls ${kernel_path}/*${KERNEL_VAR}*.tar.gz -l 2>/dev/null | grep "^-" | wc -l)" -lt "3" ]]; then
         echo -e "${INFO} (${i}) [ ${KERNEL_VAR} ] Kernel loading from [ ${KERNEL_REPO_URL}/${KERNEL_VAR} ]"
+
+        echo "debug: ${KERNEL_REPO_URL}"
+        echo "debug: ${KERNEL_VAR}"
+        echo "debug: ${kernel_path}"
+        echo "debug: svn export ${KERNEL_REPO_URL}/${KERNEL_VAR} ${kernel_path} --force"
+
         svn export ${KERNEL_REPO_URL}/${KERNEL_VAR} ${kernel_path} --force
     else
         echo -e "${INFO} (${i}) [ ${KERNEL_VAR} ] Kernel is in the local directory."
