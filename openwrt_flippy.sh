@@ -123,10 +123,10 @@ sync
 
 # KERNEL_REPO 的下载方式已经不支持转svn的方式了  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
 mkdir /opt/${SELECT_PACKITPATH}/kernel
-wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.110/boot-5.10.110-flippy-71+.tar.gz
-wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.110/dtb-amlogic-5.10.110-flippy-71+.tar.gz
-wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.110/header-5.10.110-flippy-71+.tar.gz
-wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.110/modules-5.10.110-flippy-71+.tar.gz
+wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
+wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
+wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
+wget -P /opt/${SELECT_PACKITPATH}/kernel https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
 
 # Load *-armvirt-64-default-rootfs.tar.gz
 if [[ ${OPENWRT_ARMVIRT} == http* ]]; then
