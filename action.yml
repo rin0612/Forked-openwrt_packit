@@ -5,8 +5,8 @@ inputs:
   mode:
     description: 'Choose script.'
     required: false
-#    default: 'flippy'
-    default: 'sswdr.backup.2022.04.25'
+    default: 'flippy'
+#    default: 'sswdr.backup.2022.04.25'
 
 runs:
   using: "composite"
