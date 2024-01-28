@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
-#=====================================================================================
+#!/bin/bash
 
 echo "package by openwrt_sswdr.backup.2022.04.25.sh"
 
-sudo su
+sudo apt-get update && sudo apt-get install -y p7zip p7zip-full zip unzip gzip xz-utils pigz zstd
+
 git clone https://github.com/rin0612/openwrt_packit -b backup.2022.04.25 /opt/openwrt_packit
 cd /opt/openwrt_packit
 wget -q ${OPENWRT_ARMVIRT}
@@ -20,4 +20,4 @@ KERNEL_PKG_HOME="/opt/openwrt_packit/kernel"
 OPENWRT_VER="{OPENWRT_VER}"
 EOF
 
-bash /opt/openwrt_packit/${RUN_SH}
+sudo ./opt/openwrt_packit/${RUN_SH}
