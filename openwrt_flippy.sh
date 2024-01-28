@@ -128,10 +128,11 @@ tar -zxvf kernel.tar.gz && rm kernel.tar.gz
 
 # TODO by sswdr 打包配置待处理
 cat << EOF >> /opt/${SELECT_PACKITPATH}/make.env
+
 WHOAMI="杀生丸大人"
 OPENWRT_VER="R22.4.1"
 KERNEL_VERSION="5.10.110-flippy-71+"
-KERNEL_PKG_HOME="\${PWD}/kernel"
+KERNEL_PKG_HOME="${PWD}/kernel"
 EOF
 
 # Load *-armvirt-64-default-rootfs.tar.gz
