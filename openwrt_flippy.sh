@@ -109,7 +109,7 @@ ERROR="[${red_font_prefix}ERROR${font_color_suffix}]"
 [[ -n "${ENABLE_WIFI_K504}" ]] || ENABLE_WIFI_K504="${ENABLE_WIFI_K504_VALUE}"
 [[ -n "${ENABLE_WIFI_K510}" ]] || ENABLE_WIFI_K510="${ENABLE_WIFI_K510_VALUE}"
 
-echo -e "${INFO} Welcome to use the OpenWrt packaging tool! by ${SCRIPT_REPO_URL_VALUE} ${SCRIPT_REPO_BRANCH_VALUE} \n"
+echo -e "${INFO} Welcome to use the OpenWrt packaging tool! TODO by sswdr: ${SCRIPT_REPO_URL_VALUE} ${SCRIPT_REPO_BRANCH_VALUE} \n"
 
 cd /opt
 
@@ -121,30 +121,24 @@ echo -e "${STEPS} Cloning package script repository [ ${SCRIPT_REPO_URL} ], bran
 git clone --depth 1 ${SCRIPT_REPO_URL} -b ${SCRIPT_REPO_BRANCH} ${SELECT_PACKITPATH}
 sync
 
-# KERNEL_REPO 的下载方式已经不支持转svn的方式了，非必须：header-.tar.gz  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
-mkdir /opt/kernel
-wget -q -O /opt/kernel/boot-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/kernel/dtb-amlogic-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/kernel/header-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/kernel/modules-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
-
+# TODO by sswdr init new config KERNEL_REPO 的下载方式已经不支持转svn的方式了，非必须：header-.tar.gz  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
 mkdir /opt/${SELECT_PACKITPATH}/kernel
-wget -p /opt/${SELECT_PACKITPATH}/ https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
-wget -p /opt/${SELECT_PACKITPATH}/ https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
-wget -p /opt/${SELECT_PACKITPATH}/ https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
-wget -p /opt/${SELECT_PACKITPATH}/ https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/${SELECT_PACKITPATH}/kernel/boot-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/boot-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/${SELECT_PACKITPATH}/kernel/dtb-amlogic-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/dtb-amlogic-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/${SELECT_PACKITPATH}/kernel/header-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/header-5.10.111-flippy-71+.tar.gz
-wget -q -O /opt/${SELECT_PACKITPATH}/kernel/modules-.tar.gz https://github.com/rin0612/Forked-kernel/raw/main/pub/stable/5.10.111/modules-5.10.111-flippy-71+.tar.gz
+wget -q -O /opt/${SELECT_PACKITPATH}/kernel/kernel.tar.gz ${KERNEL_REPO_URL}/${KERNEL_VERSION_NAME}.tar.gz
+tar -zxvf kernel.tar.gz && rm kernel.tar.gz
 
-
+# TODO by sswdr 打包配置待处理
+cat << EOF >> /opt/${SELECT_PACKITPATH}/make.env
+WHOAMI="杀生丸大人"
+OPENWRT_VER="R22.4.1"
+KERNEL_VERSION="5.10.110-flippy-71+"
+KERNEL_PKG_HOME="\${PWD}/kernel"
+EOF
 
 # Load *-armvirt-64-default-rootfs.tar.gz
 if [[ ${OPENWRT_ARMVIRT} == http* ]]; then
     echo -e "${STEPS} wget [ ${OPENWRT_ARMVIRT} ] file into ${SELECT_PACKITPATH}"
     # wget -c ${OPENWRT_ARMVIRT} -O "${SELECT_PACKITPATH}/${PACKAGE_FILE}"
-    # 静默下载不输出太多日志
+    # TODO by sswdr 静默下载不输出太多日志
     wget -q -c ${OPENWRT_ARMVIRT} -O "${SELECT_PACKITPATH}/${PACKAGE_FILE}"
 else
     echo -e "${STEPS} copy [ ${GITHUB_WORKSPACE}/${OPENWRT_ARMVIRT} ] file into ${SELECT_PACKITPATH}"
@@ -221,12 +215,6 @@ i=1
 for KERNEL_VAR in ${SELECT_ARMBIANKERNEL[*]}; do
     if [[ "$(ls ${kernel_path}/*${KERNEL_VAR}*.tar.gz -l 2>/dev/null | grep "^-" | wc -l)" -lt "3" ]]; then
         echo -e "${INFO} (${i}) [ ${KERNEL_VAR} ] Kernel loading from [ ${KERNEL_REPO_URL}/${KERNEL_VAR} ]"
-
-        echo "debug: ${KERNEL_REPO_URL}"
-        echo "debug: ${KERNEL_VAR}"
-        echo "debug: ${kernel_path}"
-        echo "debug: svn export ${KERNEL_REPO_URL}/${KERNEL_VAR} ${kernel_path} --force"
-
         svn export ${KERNEL_REPO_URL}/${KERNEL_VAR} ${kernel_path} --force
     else
         echo -e "${INFO} (${i}) [ ${KERNEL_VAR} ] Kernel is in the local directory."
