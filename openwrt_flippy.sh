@@ -20,4 +20,4 @@ KERNEL_PKG_HOME="/opt/openwrt_packit/kernel"
 OPENWRT_VER="{OPENWRT_VER}"
 EOF
 
-sudo ./opt/openwrt_packit/${RUN_SH}
+sudo ./${RUN_SH}
