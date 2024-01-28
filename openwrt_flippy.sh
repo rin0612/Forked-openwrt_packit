@@ -124,7 +124,7 @@ sync
 # TODO by sswdr init new config KERNEL_REPO 的下载方式已经不支持转svn的方式了，非必须：header-.tar.gz  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
 mkdir /opt/${SELECT_PACKITPATH}/kernel
 wget -q -O /opt/${SELECT_PACKITPATH}/kernel/kernel.tar.gz ${KERNEL_REPO_URL}/${KERNEL_VERSION_NAME}.tar.gz
-tar -zxvf kernel.tar.gz && rm kernel.tar.gz
+tar -zxvf /opt/${SELECT_PACKITPATH}/kernel.tar.gz && rm /opt/${SELECT_PACKITPATH}/kernel.tar.gz
 
 # TODO by sswdr 打包配置待处理
 cat << EOF >> /opt/${SELECT_PACKITPATH}/make.env
