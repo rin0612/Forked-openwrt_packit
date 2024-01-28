@@ -2,7 +2,7 @@
 #=====================================================================================
 # Description: Automatically Packaged OpenWrt
 # Function: Use Flippy's kernrl files and script to Packaged openwrt
-# Copyright (C) 2021 https://github.com/rin0612/openwrt_packit
+# Copyright (C) 2021 https://github.com/unifreq/openwrt_packit
 # Copyright (C) 2021 https://github.com/ophub/flippy-openwrt-actions
 #=====================================================================================
 
@@ -23,8 +23,8 @@ MAKE_PATH=${PWD}
 PACKAGE_FILE="openwrt-armvirt-64-default-rootfs.tar.gz"
 PACKAGE_OPENWRT=("vplus" "beikeyun" "l1pro" "s905" "s905d" "s905x2" "s905x3" "s912" "s922x" "s922x-n2" "diy")
 SELECT_ARMBIANKERNEL=("5.15.25" "5.4.180")
-SCRIPT_REPO_URL_VALUE="https://github.com/rin0612/openwrt_packit"
-SCRIPT_REPO_BRANCH_VALUE="backup.2022.04.25"
+SCRIPT_REPO_URL_VALUE="https://github.com/unifreq/openwrt_packit"
+SCRIPT_REPO_BRANCH_VALUE="master"
 KERNEL_REPO_URL_VALUE="https://github.com/breakings/OpenWrt/tree/main/opt/kernel"
 # KERNEL_REPO_URL_VALUE URL supported format:
 # KERNEL_REPO_URL_VALUE="https://github.com/breakings/OpenWrt/trunk/opt/kernel"
@@ -109,7 +109,7 @@ ERROR="[${red_font_prefix}ERROR${font_color_suffix}]"
 [[ -n "${ENABLE_WIFI_K504}" ]] || ENABLE_WIFI_K504="${ENABLE_WIFI_K504_VALUE}"
 [[ -n "${ENABLE_WIFI_K510}" ]] || ENABLE_WIFI_K510="${ENABLE_WIFI_K510_VALUE}"
 
-echo -e "${INFO} Welcome to use the OpenWrt packaging tool! TODO by sswdr: ${SCRIPT_REPO_URL_VALUE} ${SCRIPT_REPO_BRANCH_VALUE} \n"
+echo -e "${INFO} Welcome to use the OpenWrt packaging tool! \n"
 
 cd /opt
 
@@ -121,26 +121,10 @@ echo -e "${STEPS} Cloning package script repository [ ${SCRIPT_REPO_URL} ], bran
 git clone --depth 1 ${SCRIPT_REPO_URL} -b ${SCRIPT_REPO_BRANCH} ${SELECT_PACKITPATH}
 sync
 
-# TODO by sswdr init new config KERNEL_REPO 的下载方式已经不支持转svn的方式了，非必须：header-.tar.gz  /opt/${SELECT_PACKITPATH}/kernel  =  /opt/openwrt_packit/kernel
-mkdir /opt/${SELECT_PACKITPATH}/kernel
-wget -q -O /opt/${SELECT_PACKITPATH}/kernel/kernel.tar.gz ${KERNEL_REPO_URL}/${KERNEL_VERSION_NAME}.tar.gz
-tar -zxvf /opt/${SELECT_PACKITPATH}/kernel.tar.gz && rm /opt/${SELECT_PACKITPATH}/kernel.tar.gz
-
-# TODO by sswdr 打包配置待处理
-cat << EOF >> /opt/${SELECT_PACKITPATH}/make.env
-
-WHOAMI="杀生丸大人"
-OPENWRT_VER="R22.4.1"
-KERNEL_VERSION="5.10.110-flippy-71+"
-KERNEL_PKG_HOME="${PWD}/kernel"
-EOF
-
 # Load *-armvirt-64-default-rootfs.tar.gz
 if [[ ${OPENWRT_ARMVIRT} == http* ]]; then
     echo -e "${STEPS} wget [ ${OPENWRT_ARMVIRT} ] file into ${SELECT_PACKITPATH}"
-    # wget -c ${OPENWRT_ARMVIRT} -O "${SELECT_PACKITPATH}/${PACKAGE_FILE}"
-    # TODO by sswdr 静默下载不输出太多日志
-    wget -q -c ${OPENWRT_ARMVIRT} -O "${SELECT_PACKITPATH}/${PACKAGE_FILE}"
+    wget -c ${OPENWRT_ARMVIRT} -O "${SELECT_PACKITPATH}/${PACKAGE_FILE}"
 else
     echo -e "${STEPS} copy [ ${GITHUB_WORKSPACE}/${OPENWRT_ARMVIRT} ] file into ${SELECT_PACKITPATH}"
     cp -f ${GITHUB_WORKSPACE}/${OPENWRT_ARMVIRT} ${SELECT_PACKITPATH}/${PACKAGE_FILE}
