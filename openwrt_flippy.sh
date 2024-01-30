@@ -33,7 +33,7 @@ sudo ./${RUN_SH}
 
 echo "------ 打包完成"
 cd /opt/openwrt_packit/output
-gzip ./*.img && rm ./*.img
+gzip ./*.img
 mv ../*.tar.gz ./
 echo "PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H%M")" >>$GITHUB_ENV
 echo "PACKAGED_OUTPUTPATH=${PWD}" >>$GITHUB_ENV
