@@ -1,3 +1,7 @@
+# Project exclude paths
+/openwrt-build.iml
+/target/
+/.idea/
 /src1
 /src2
 /sp1
