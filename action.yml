@@ -5,11 +5,12 @@ inputs:
   mode:
     description: 'Choose script.'
     required: false
+    # TODO 这里换个脚本指定会报没有权限?public_funcs?copy_supplement_files?
     default: 'flippy'
 
 runs:
   using: "composite"
-  steps: 
+  steps:
     - run: ${GITHUB_ACTION_PATH}/openwrt_${{ inputs.mode }}.sh
       shell: bash
       
