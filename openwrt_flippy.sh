@@ -38,4 +38,4 @@ mv ../*.tar.gz ./
 echo "PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H%M")" >>$GITHUB_ENV
 echo "PACKAGED_OUTPUTPATH=${PWD}" >>$GITHUB_ENV
 echo "------ 打包信息: PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H%M")"
-ll -alh
+ls -alh
