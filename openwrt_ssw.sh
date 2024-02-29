@@ -39,7 +39,7 @@ cd /opt/openwrt_packit/output
 gzip ./*.img
 mv ../*.tar.gz ./
 echo "------ 准备打包信息到github环境变量方便后续使用"
-echo "PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H%M")" >>$GITHUB_ENV
+echo "PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H.%M")" >>$GITHUB_ENV
 echo "PACKAGED_OUTPUTPATH=${PWD}" >>$GITHUB_ENV
-echo "------ 打包信息: PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H%M")"
+echo "------ 打包信息: PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d.%H.%M")"
 ls -alh
