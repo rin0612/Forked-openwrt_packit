@@ -6,8 +6,8 @@
 echo "------ package by openwrt_sswdr.backup.2022.04.25.sh"
 
 sudo apt-get update && sudo apt-get install -y p7zip p7zip-full zip unzip gzip xz-utils pigz zstd
-echo "------ 准备打包仓库: git clone ${PACKIT_REPO_URL} -b ${PACKIT_REPO_BRANCH} /opt/openwrt_packit"
-git clone ${PACKIT_REPO_URL} -b ${PACKIT_REPO_BRANCH} /opt/openwrt_packit
+echo "------ 准备打包仓库: git clone ${SCRIPT_REPO_URL} -b ${SCRIPT_REPO_BRANCH} /opt/openwrt_packit"
+git clone ${SCRIPT_REPO_URL} -b ${SCRIPT_REPO_BRANCH} /opt/openwrt_packit
 
 cd /opt/openwrt_packit
 if [ -f ${OPENWRT_ARMVIRT} ]; then
