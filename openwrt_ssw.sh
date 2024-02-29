@@ -15,7 +15,7 @@ if [ -f ${OPENWRT_ARMVIRT} ]; then
     mv ${OPENWRT_ARMVIRT} ./
 else
     echo "------ 准备rootfs.tar.gz: wget -q ${OPENWRT_ARMVIRT}"
-    wget -q ${OPENWRT_ARMVIRT}
+    wget -q -O openwrt-armvirt-64-default-rootfs.tar.gz ${OPENWRT_ARMVIRT}
 fi
 
 mkdir kernel && cd kernel
