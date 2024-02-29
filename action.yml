@@ -5,7 +5,7 @@ inputs:
   mode:
     description: 'Choose script.'
     required: false
-    default: 'flippy'
+    default: 'ssw'
 
 runs:
   using: "composite"
