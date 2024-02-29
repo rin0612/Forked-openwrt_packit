@@ -10,7 +10,7 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: sudo ${GITHUB_ACTION_PATH}/openwrt_${{ inputs.mode }}.sh
+    - run: chmod +x ${GITHUB_ACTION_PATH}/openwrt_ssw.sh && ${GITHUB_ACTION_PATH}/openwrt_${{ inputs.mode }}.sh
       shell: bash
       
 branding:
